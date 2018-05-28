@@ -29,5 +29,13 @@ namespace HLFApplication.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.Protein> Proteins { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.PreWorkout> PreWorkouts { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.Multivitamin> Multivitamins { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.Accessory> Accessories { get; set; }
     }
 }

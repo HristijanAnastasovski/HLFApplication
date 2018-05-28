@@ -113,8 +113,12 @@ C:\Users\User\source\repos\HLFApplication\HLFApplication\bin\Microsoft.AI.Depend
 C:\Users\User\source\repos\HLFApplication\HLFApplication\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\User\source\repos\HLFApplication\HLFApplication\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\User\source\repos\HLFApplication\HLFApplication\bin\Microsoft.AI.Web.xml
-C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csprojResolveAssemblyReference.cache
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csproj.CopyComplete
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.dll
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.pdb
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.ProteinClassMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csproj.GenerateResource.cache
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.ProteinClass1.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.newClassesMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csprojResolveAssemblyReference.cache
