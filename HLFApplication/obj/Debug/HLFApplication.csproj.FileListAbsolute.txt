@@ -121,4 +121,11 @@ C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplicatio
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csproj.GenerateResource.cache
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.ProteinClass1.resources
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.newClassesMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.changes2.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.RatingClassMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.RatingClassCorrect.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.RatingNewMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.buyProteinMigration.resources
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csprojResolveAssemblyReference.cache
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.CommentMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.CommentUpdatedMigration.resources

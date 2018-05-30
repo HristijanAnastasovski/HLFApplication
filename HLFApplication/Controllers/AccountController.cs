@@ -51,7 +51,37 @@ namespace HLFApplication.Controllers
                 _userManager = value;
             }
         }
+        
+        [Authorize (Roles=Roles.Administrator)]
+        public ActionResult AddRole()
+        {
+            var model = new AddRoleToUser();
+            model.Roles.Add(Roles.Administrator);
+            model.Roles.Add(Roles.Editor);
+            model.Roles.Add(Roles.Member);
 
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public ActionResult AddRole(AddRoleToUser model)
+        {
+            try
+            {
+                
+                var user = UserManager.FindByEmail(model.Email);
+                UserManager.AddToRole(user.Id, model.selectedRole);
+                return RedirectToAction("Index", "Store");
+            }
+            catch(Exception ex)
+            {
+                return HttpNotFound();
+            }
+
+            
+
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -137,6 +167,7 @@ namespace HLFApplication.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
+        
         public ActionResult Register()
         {
             return View();
@@ -153,10 +184,12 @@ namespace HLFApplication.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+               
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await UserManager.AddToRoleAsync(user.Id, Roles.Member);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

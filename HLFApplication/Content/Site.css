@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.item {
+    width: 28%;
+    height: 150px;
+    display: inline-block;
+    margin: 20px;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%;
+}

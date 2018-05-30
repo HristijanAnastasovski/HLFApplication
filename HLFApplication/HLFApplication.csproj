@@ -191,11 +191,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccessoriesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BuyProteinsController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MultivitaminsController.cs" />
     <Compile Include="Controllers\PreWorkoutsController.cs" />
     <Compile Include="Controllers\ProteinsController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,14 +215,48 @@
     <Compile Include="Migrations\201805281646514_newClassesMigration.Designer.cs">
       <DependentUpon>201805281646514_newClassesMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805291703550_changes2.cs" />
+    <Compile Include="Migrations\201805291703550_changes2.Designer.cs">
+      <DependentUpon>201805291703550_changes2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805291846079_RatingClassMigration.cs" />
+    <Compile Include="Migrations\201805291846079_RatingClassMigration.Designer.cs">
+      <DependentUpon>201805291846079_RatingClassMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805291854021_RatingClassCorrect.cs" />
+    <Compile Include="Migrations\201805291854021_RatingClassCorrect.Designer.cs">
+      <DependentUpon>201805291854021_RatingClassCorrect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805301151424_RatingNewMigration.cs" />
+    <Compile Include="Migrations\201805301151424_RatingNewMigration.Designer.cs">
+      <DependentUpon>201805301151424_RatingNewMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805301345529_buyProteinMigration.cs" />
+    <Compile Include="Migrations\201805301345529_buyProteinMigration.Designer.cs">
+      <DependentUpon>201805301345529_buyProteinMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805301439197_CommentMigration.cs" />
+    <Compile Include="Migrations\201805301439197_CommentMigration.Designer.cs">
+      <DependentUpon>201805301439197_CommentMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805301458108_CommentUpdatedMigration.cs" />
+    <Compile Include="Migrations\201805301458108_CommentUpdatedMigration.Designer.cs">
+      <DependentUpon>201805301458108_CommentUpdatedMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accessory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddQuantityToItem.cs" />
+    <Compile Include="Models\AddRoleToUser.cs" />
+    <Compile Include="Models\BuyProtein.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Multivitamin.cs" />
     <Compile Include="Models\PreWorkout.cs" />
     <Compile Include="Models\Protein.cs" />
+    <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -227,6 +264,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Custom.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -301,6 +339,25 @@
     <Content Include="Views\Accessories\Details.cshtml" />
     <Content Include="Views\Accessories\Edit.cshtml" />
     <Content Include="Views\Accessories\Index.cshtml" />
+    <Content Include="Views\Account\AddRole.cshtml" />
+    <Content Include="Views\Proteins\AddComment.cshtml" />
+    <Content Include="Views\Proteins\AddQuantity.cshtml" />
+    <Content Include="Views\Ratings\Create.cshtml" />
+    <Content Include="Views\Ratings\Delete.cshtml" />
+    <Content Include="Views\Ratings\Details.cshtml" />
+    <Content Include="Views\Ratings\Edit.cshtml" />
+    <Content Include="Views\Ratings\Index.cshtml" />
+    <Content Include="Views\Proteins\BuyProduct.cshtml" />
+    <Content Include="Views\BuyProteins\Create.cshtml" />
+    <Content Include="Views\BuyProteins\Delete.cshtml" />
+    <Content Include="Views\BuyProteins\Details.cshtml" />
+    <Content Include="Views\BuyProteins\Edit.cshtml" />
+    <Content Include="Views\BuyProteins\Index.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,6 +384,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805281646514_newClassesMigration.resx">
       <DependentUpon>201805281646514_newClassesMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805291703550_changes2.resx">
+      <DependentUpon>201805291703550_changes2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805291846079_RatingClassMigration.resx">
+      <DependentUpon>201805291846079_RatingClassMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805291854021_RatingClassCorrect.resx">
+      <DependentUpon>201805291854021_RatingClassCorrect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301151424_RatingNewMigration.resx">
+      <DependentUpon>201805301151424_RatingNewMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301345529_buyProteinMigration.resx">
+      <DependentUpon>201805301345529_buyProteinMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301439197_CommentMigration.resx">
+      <DependentUpon>201805301439197_CommentMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301458108_CommentUpdatedMigration.resx">
+      <DependentUpon>201805301458108_CommentUpdatedMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

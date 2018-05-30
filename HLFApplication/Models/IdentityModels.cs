@@ -37,5 +37,11 @@ namespace HLFApplication.Models
         public System.Data.Entity.DbSet<HLFApplication.Models.Multivitamin> Multivitamins { get; set; }
 
         public System.Data.Entity.DbSet<HLFApplication.Models.Accessory> Accessories { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.Rating> Ratings { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.BuyProtein> BuyProteins { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.Comment> Comments { get; set; }
     }
 }

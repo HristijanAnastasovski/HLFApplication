@@ -17,6 +17,19 @@ namespace HLFApplication.Controllers
         // GET: Proteins
         public ActionResult Index()
         {
+            var proteins = db.Proteins.ToList();
+            var ratings = db.Ratings.ToList();
+            for(int i=0;i<proteins.Count;i++)
+            {
+                for(int j=0;j<ratings.Count;j++)
+                {
+                    if(proteins.ElementAt(i).ProteinId==ratings.ElementAt(j).ProteinId)
+                    {
+                        proteins.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
+                    }
+                }
+            }
+            db.SaveChanges();
             return View(db.Proteins.ToList());
         }
 
@@ -32,10 +45,78 @@ namespace HLFApplication.Controllers
             {
                 return HttpNotFound();
             }
+            var proteins = db.Proteins.ToList();
+            var ratings = db.Ratings.ToList();
+            for (int i = 0; i < proteins.Count; i++)
+            {
+                for (int j = 0; j < ratings.Count; j++)
+                {
+                    if (proteins.ElementAt(i).ProteinId == ratings.ElementAt(j).ProteinId)
+                    {
+                        proteins.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
+                    }
+                }
+            }
+            
+            var comments = db.Comments.ToList();
+           
+            db.SaveChanges();
             return View(protein);
         }
 
+        [Authorize (Roles="Member")]
+        public ActionResult BuyProduct(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Protein protein = db.Proteins.Find(id);
+            if (protein == null)
+            {
+                return HttpNotFound();
+            }
+            return View(protein);
+        }
+        [Authorize(Roles = "Administrator,Editor")]
+        public ActionResult AddQuantity(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Protein protein = db.Proteins.Find(id);
+            if (protein == null)
+            {
+                return HttpNotFound();
+            }
+            
+
+            AddQuantityToItem model = new AddQuantityToItem();
+            model.ItemId = id;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddQuantity(AddQuantityToItem model)
+        {
+            db.Proteins.Find(model.ItemId).NumberOfProductsInStock = db.Proteins.Find(model.ItemId).NumberOfProductsInStock + model.Quantity;
+            db.SaveChanges();
+
+
+
+
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
         // GET: Proteins/Create
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +140,7 @@ namespace HLFApplication.Controllers
         }
 
         // GET: Proteins/Edit/5
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +172,7 @@ namespace HLFApplication.Controllers
         }
 
         // GET: Proteins/Delete/5
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
