@@ -4,55 +4,69 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<<h2>Details about the product</h2>
 
-<div>
-    <h4>Accessory</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div style="display:block;clear:both;width:80%">
+    <img src="@Model.ImageURL" style="max-width:300px;max-height:300px;float:left;" />
+    <h2>@Model.Name - @Model.Price$</h2>
+    <h4>@Model.Description</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    @{
+        decimal average = 0;
+        if (Model.Ratings.Count == 0)
+        {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            average = 0;
+        }
+        else
+        {
+            for (int i = 0; i < Model.Ratings.Count; i++)
+            {
+                average += Model.Ratings.ElementAt(i);
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            }
+            average = average / (decimal)Model.Ratings.Count;
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfProductsInStock)
-        </dt>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfProductsInStock)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+    <h4>Average rating of @Math.Round(average, 2)/5 (@Model.Ratings.Count Ratings)</h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageURL)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImageURL)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AccessoryId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div style="display:block;clear:both;width:80%">
+
+    <h2>Comments from members: </h2>
+    <table class="table">
+        <tr>
+            <th>
+                <strong>Comment</strong>
+            </th>
+            <th>
+                <strong>By</strong>
+            </th>
+        </tr>
+
+        @foreach (HLFApplication.Models.CommentAccessory c in Model.Comments)
+        {
+            <tr>
+                <td>
+                    @c.Opinion
+                </td>
+                <td>
+                    @c.Name
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+
+
+</div>
+
+@Html.ActionLink("Add a comment", "Create", "CommentAccessories", new { id = @Model.AccessoryId }, new { @class = "btn btn-default" })
+
+

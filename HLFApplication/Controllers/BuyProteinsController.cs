@@ -22,6 +22,7 @@ namespace HLFApplication.Controllers
         }
 
         // GET: BuyProteins/Details/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Details(int? id)
         {
             if (id == null)

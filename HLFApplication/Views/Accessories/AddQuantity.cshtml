@@ -1,0 +1,25 @@
+﻿@model HLFApplication.Models.AddQuantityToItem
+@{
+    ViewBag.Title = "AddQuantity";
+}
+
+<h2>Add number of items</h2>
+
+@using (Html.BeginForm("AddQuantity", "Accessories"))
+{
+
+    <div class="form-group">
+        @Html.DisplayNameFor(m => Model.Quantity)
+        @Html.TextBoxFor(m => Model.Quantity, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.ItemId)
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+
+

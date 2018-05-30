@@ -33,6 +33,33 @@ namespace HLFApplication.Controllers
             return View(db.Proteins.ToList());
         }
 
+       /* public ActionResult AddDiscount(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Protein protein = db.Proteins.Find(id);
+            protein.OldPrice = protein.Price;
+            db.SaveChanges();
+            if (protein == null)
+            {
+                return HttpNotFound();
+            }
+            return View(protein);
+
+        }
+        [HttpPost]
+        public ActionResult AddDiscount(Protein p)
+        {
+            var protein = db.Proteins.Find(p.ProteinId);
+            
+            protein.Price = p.Price;
+            db.SaveChanges();
+            return View("Index");
+            
+
+        }*/
         // GET: Proteins/Details/5
         public ActionResult Details(int? id)
         {
@@ -103,11 +130,6 @@ namespace HLFApplication.Controllers
         {
             db.Proteins.Find(model.ItemId).NumberOfProductsInStock = db.Proteins.Find(model.ItemId).NumberOfProductsInStock + model.Quantity;
             db.SaveChanges();
-
-
-
-
-
             return RedirectToAction("Index");
         }
 

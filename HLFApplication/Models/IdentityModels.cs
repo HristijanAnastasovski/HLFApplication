@@ -32,7 +32,7 @@ namespace HLFApplication.Models
 
         public System.Data.Entity.DbSet<HLFApplication.Models.Protein> Proteins { get; set; }
 
-        public System.Data.Entity.DbSet<HLFApplication.Models.PreWorkout> PreWorkouts { get; set; }
+       
 
         public System.Data.Entity.DbSet<HLFApplication.Models.Multivitamin> Multivitamins { get; set; }
 
@@ -43,5 +43,11 @@ namespace HLFApplication.Models
         public System.Data.Entity.DbSet<HLFApplication.Models.BuyProtein> BuyProteins { get; set; }
 
         public System.Data.Entity.DbSet<HLFApplication.Models.Comment> Comments { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.RatingAccessory> RatingAccessories { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.CommentAccessory> CommentAccessories { get; set; }
+
+        public System.Data.Entity.DbSet<HLFApplication.Models.BuyAccessory> BuyAccessories { get; set; }
     }
 }

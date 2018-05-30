@@ -17,6 +17,19 @@ namespace HLFApplication.Controllers
         // GET: Accessories
         public ActionResult Index()
         {
+            var accessories = db.Accessories.ToList();
+            var ratings = db.RatingAccessories.ToList();
+            for (int i = 0; i < accessories.Count; i++)
+            {
+                for (int j = 0; j < ratings.Count; j++)
+                {
+                    if (accessories.ElementAt(i).AccessoryId == ratings.ElementAt(j).AccessoryId)
+                    {
+                        accessories.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
+                    }
+                }
+            }
+            db.SaveChanges();
             return View(db.Accessories.ToList());
         }
 
@@ -32,10 +45,69 @@ namespace HLFApplication.Controllers
             {
                 return HttpNotFound();
             }
+            var accessories = db.Accessories.ToList();
+            var ratings = db.RatingAccessories.ToList();
+            for (int i = 0; i < accessories.Count; i++)
+            {
+                for (int j = 0; j < ratings.Count; j++)
+                {
+                    if (accessories.ElementAt(i).AccessoryId == ratings.ElementAt(j).AccessoryId)
+                    {
+                        accessories.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
+                    }
+                }
+            }
+
+            var comments = db.CommentAccessories.ToList();
+
+            db.SaveChanges();
             return View(accessory);
         }
 
+        [Authorize(Roles = "Member")]
+        public ActionResult BuyProduct(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Accessory accessory = db.Accessories.Find(id);
+            if (accessory == null)
+            {
+                return HttpNotFound();
+            }
+            return View(accessory);
+        }
+
+        [Authorize(Roles = "Administrator,Editor")]
+        public ActionResult AddQuantity(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Accessory accessory = db.Accessories.Find(id);
+            if (accessory == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            AddQuantityToItem model = new AddQuantityToItem();
+            model.ItemId = id;
+
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddQuantity(AddQuantityToItem model)
+        {
+            db.Accessories.Find(model.ItemId).NumberOfProductsInStock = db.Accessories.Find(model.ItemId).NumberOfProductsInStock + model.Quantity;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         // GET: Accessories/Create
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +131,7 @@ namespace HLFApplication.Controllers
         }
 
         // GET: Accessories/Edit/5
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +163,7 @@ namespace HLFApplication.Controllers
         }
 
         // GET: Accessories/Delete/5
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

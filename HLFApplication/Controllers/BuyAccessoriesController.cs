@@ -10,107 +10,115 @@ using HLFApplication.Models;
 
 namespace HLFApplication.Controllers
 {
-    public class PreWorkoutsController : Controller
+    public class BuyAccessoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: PreWorkouts
+        // GET: BuyAccessories
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
-            return View(db.PreWorkouts.ToList());
+            return View(db.BuyAccessories.ToList());
         }
 
-        // GET: PreWorkouts/Details/5
+        // GET: BuyAccessories/Details/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PreWorkout preWorkout = db.PreWorkouts.Find(id);
-            if (preWorkout == null)
+            BuyAccessory buyAccessory = db.BuyAccessories.Find(id);
+            if (buyAccessory == null)
             {
                 return HttpNotFound();
             }
-            return View(preWorkout);
+            return View(buyAccessory);
         }
 
-        // GET: PreWorkouts/Create
-        public ActionResult Create()
+        // GET: BuyAccessories/Create
+        public ActionResult Create(int id)
         {
-            return View();
+            BuyAccessory model = new BuyAccessory();
+            model.AccessoryId = id;
+            return View(model);
         }
 
-        // POST: PreWorkouts/Create
+        // POST: BuyAccessories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PreWorkoutId,Name,Price,NumberOfProductsInStock,Description,ImageURL")] PreWorkout preWorkout)
+        public ActionResult Create(BuyAccessory buyAccessory)
         {
             if (ModelState.IsValid)
             {
-                db.PreWorkouts.Add(preWorkout);
+                var accessory = db.Accessories.Find(buyAccessory.AccessoryId);
+                accessory.NumberOfProductsInStock = accessory.NumberOfProductsInStock - 1;
+                db.BuyAccessories.Add(buyAccessory);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Accessories");
             }
 
-            return View(preWorkout);
+            return View(buyAccessory);
         }
 
-        // GET: PreWorkouts/Edit/5
+        // GET: BuyAccessories/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PreWorkout preWorkout = db.PreWorkouts.Find(id);
-            if (preWorkout == null)
+            BuyAccessory buyAccessory = db.BuyAccessories.Find(id);
+            if (buyAccessory == null)
             {
                 return HttpNotFound();
             }
-            return View(preWorkout);
+            return View(buyAccessory);
         }
 
-        // POST: PreWorkouts/Edit/5
+        // POST: BuyAccessories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PreWorkoutId,Name,Price,NumberOfProductsInStock,Description,ImageURL")] PreWorkout preWorkout)
+        public ActionResult Edit([Bind(Include = "BuyProteinId,AccessoryId,FirstName,LastName,PhoneNumber,Country,Address,CreditCardNumber")] BuyAccessory buyAccessory)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(preWorkout).State = EntityState.Modified;
+                db.Entry(buyAccessory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(preWorkout);
+            return View(buyAccessory);
         }
 
-        // GET: PreWorkouts/Delete/5
+        // GET: BuyAccessories/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PreWorkout preWorkout = db.PreWorkouts.Find(id);
-            if (preWorkout == null)
+            BuyAccessory buyAccessory = db.BuyAccessories.Find(id);
+            if (buyAccessory == null)
             {
                 return HttpNotFound();
             }
-            return View(preWorkout);
+            return View(buyAccessory);
         }
 
-        // POST: PreWorkouts/Delete/5
+        // POST: BuyAccessories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PreWorkout preWorkout = db.PreWorkouts.Find(id);
-            db.PreWorkouts.Remove(preWorkout);
+            BuyAccessory buyAccessory = db.BuyAccessories.Find(id);
+            db.BuyAccessories.Remove(buyAccessory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

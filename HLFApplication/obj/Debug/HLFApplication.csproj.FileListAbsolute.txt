@@ -126,6 +126,10 @@ C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplicatio
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.RatingClassCorrect.resources
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.RatingNewMigration.resources
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.buyProteinMigration.resources
-C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csprojResolveAssemblyReference.cache
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.CommentMigration.resources
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.CommentUpdatedMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.NoPreWorkoutMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.discountMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.fixNoSale.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.AccessoriesMigration.resources
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csprojResolveAssemblyReference.cache
