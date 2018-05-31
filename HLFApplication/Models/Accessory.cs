@@ -22,13 +22,13 @@ namespace HLFApplication.Models
         [Display(Name = "Image")]
         [Required]
         public string ImageURL { get; set; }
-        public List<int> Ratings { get; set; }
+        public List<RatingAccessory> Ratings { get; set; }
         public List<CommentAccessory> Comments { get; set; }
 
         public Accessory()
         { 
             Comments = new List<CommentAccessory>();
-            Ratings = new List<int>();
+            Ratings = new List<RatingAccessory>();
         }
     }
 }

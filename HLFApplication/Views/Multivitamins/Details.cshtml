@@ -5,34 +5,53 @@
 }
 <h2>Details about the product</h2>
 
-<div style="display:block;clear:both;width:80%">
+<div style="display:block;clear:both;width:80%;background:linear-gradient(to right, #ec6f66, #f3a183);height:300px;">
 <img src="@Model.ImageURL" style="max-width:300px;max-height:300px;float:left;" />
-<h2>@Model.Name - @Model.Price$</h2>
-<h4>@Model.Description</h4>
+<div style="padding:10px; color:whitesmoke">
+    <h2>@Model.Name - @Model.Price$</h2>
+    <h4>@Model.Description</h4>
 
-@{
-    decimal average = 0;
-    if (Model.Ratings.Count == 0)
+    @{
+        decimal average = 0;
+        if (Model.Ratings.Count == 0)
+        {
+
+            average = 0;
+        }
+        else
+        {
+            for (int i = 0; i < Model.Ratings.Count; i++)
+            {
+                average += Model.Ratings.ElementAt(i).Value;
+
+            }
+            average = average / (decimal)Model.Ratings.Count;
+
+        }
+
+
+    }
+
+    <h4>Average rating of @Math.Round(average, 2)/5 (@Model.Ratings.Count Ratings)</h4>
+    @if (Model.NumberOfProductsInStock > 0)
     {
-
-        average = 0;
+        <p style="color:green">AVAILABLE</p>
     }
     else
     {
-        for (int i = 0; i < Model.Ratings.Count; i++)
-        {
-            average += Model.Ratings.ElementAt(i);
-
-        }
-        average = average / (decimal)Model.Ratings.Count;
-
+        <p style="color:red">SOLD OUT</p>
     }
+    <br />
+    @if (Model.NumberOfProductsInStock > 0)
+    {
+        <div style="float:left; ">
 
-
-}
-
-<h4>Average rating of @Math.Round(average, 2)/5 (@Model.Ratings.Count Ratings)</h4>
-
+            <a href="@Url.Action("BuyProduct", "Multivitamins",new { id=Model.MultivitaminId})" class="btn btn-default">
+                Buy <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/28468-200.png" style="height:20px;width:20px;" />
+            </a>
+        </div>
+    }
+</div>
 </div>
 <div style="display:block;clear:both;width:80%">
 

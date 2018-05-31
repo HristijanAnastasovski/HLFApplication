@@ -19,16 +19,7 @@ namespace HLFApplication.Controllers
         {
             var proteins = db.Proteins.ToList();
             var ratings = db.Ratings.ToList();
-            for(int i=0;i<proteins.Count;i++)
-            {
-                for(int j=0;j<ratings.Count;j++)
-                {
-                    if(proteins.ElementAt(i).ProteinId==ratings.ElementAt(j).ProteinId)
-                    {
-                        proteins.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
-                    }
-                }
-            }
+            
             db.SaveChanges();
             return View(db.Proteins.ToList());
         }
@@ -72,19 +63,10 @@ namespace HLFApplication.Controllers
             {
                 return HttpNotFound();
             }
+
             var proteins = db.Proteins.ToList();
             var ratings = db.Ratings.ToList();
-            for (int i = 0; i < proteins.Count; i++)
-            {
-                for (int j = 0; j < ratings.Count; j++)
-                {
-                    if (proteins.ElementAt(i).ProteinId == ratings.ElementAt(j).ProteinId)
-                    {
-                        proteins.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
-                    }
-                }
-            }
-            
+
             var comments = db.Comments.ToList();
            
             db.SaveChanges();

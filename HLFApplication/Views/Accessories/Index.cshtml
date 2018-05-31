@@ -17,10 +17,10 @@
 
 @foreach (var item in Model)
 {
-<div class="item" style="border-radius: 25px;width:31%; height:185px;display:inline-block; margin:20px;margin-left:0px;background: linear-gradient(to right, #8e0e00, #1f1c18);">
+<div class="item" style="border-radius: 25px;width:31%; height:185px;display:inline-block; margin:20px;margin-left:0px;background: linear-gradient(to left, #8e0e00, #1f1c18);">
     <div class="item-info-text" style="float:left;padding:10px;font-size:large;color:whitesmoke; width:65%; height:100%">
         <div style="display:block;">
-            Name: <a href="/Accessories/Details/@item.AccessoryId" style="font-size:large;color:whitesmoke; ">@Html.DisplayFor(modelItem => item.Name)</a>
+           <a href="/Accessories/Details/@item.AccessoryId" style="font-size:large;color:whitesmoke; ">@Html.DisplayFor(modelItem => item.Name)</a>
         </div>
         <div style="display:block;">
             Price: $@Html.DisplayFor(modelItem => item.Price)
@@ -39,7 +39,7 @@
                 {
                     for (int i = 0; i < item.Ratings.Count; i++)
                     {
-                        average += item.Ratings.ElementAt(i);
+                        average += item.Ratings.ElementAt(i).Value;
 
                     }
                     average = average / (decimal)item.Ratings.Count;
@@ -88,7 +88,7 @@
         }
         else
         {
-            <p style="color:red">OUT OF STOCK</p>
+            <p style="color:red">SOLD OUT</p>
         }
         <div style="display:block">
             @if (!User.IsInRole("Administrator") && !User.IsInRole("Editor"))

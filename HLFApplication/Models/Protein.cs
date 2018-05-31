@@ -26,14 +26,14 @@ namespace HLFApplication.Models
         //public bool OnSale { get; set; }
         //[ScaffoldColumn(false)]
         //public decimal OldPrice { get; set; }
-        public List<int> Ratings { get; set; }
+        public List<Rating> Ratings { get; set; }
         public List<Comment> Comments { get; set; }
 
         public Protein()
         {
             
             Comments = new List<Comment>();
-            Ratings = new List<int>();
+            Ratings = new List<Rating>();
         }
     }
 }

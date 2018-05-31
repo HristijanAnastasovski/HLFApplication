@@ -22,13 +22,13 @@ namespace HLFApplication.Models
         [Display(Name = "Image")]
         [Required]
         public string ImageURL { get; set; }
-        public List<int> Ratings { get; set; }
+        public List<RatingMultivitamin> Ratings { get; set; }
         public List<CommentMultivitamin> Comments { get; set; }
 
         public Multivitamin()
         {
             Comments = new List<CommentMultivitamin>();
-            Ratings = new List<int>();
+            Ratings = new List<RatingMultivitamin>();
         }
     }
 }

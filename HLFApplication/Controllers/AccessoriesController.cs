@@ -19,16 +19,7 @@ namespace HLFApplication.Controllers
         {
             var accessories = db.Accessories.ToList();
             var ratings = db.RatingAccessories.ToList();
-            for (int i = 0; i < accessories.Count; i++)
-            {
-                for (int j = 0; j < ratings.Count; j++)
-                {
-                    if (accessories.ElementAt(i).AccessoryId == ratings.ElementAt(j).AccessoryId)
-                    {
-                        accessories.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
-                    }
-                }
-            }
+            
             db.SaveChanges();
             return View(db.Accessories.ToList());
         }
@@ -47,16 +38,8 @@ namespace HLFApplication.Controllers
             }
             var accessories = db.Accessories.ToList();
             var ratings = db.RatingAccessories.ToList();
-            for (int i = 0; i < accessories.Count; i++)
-            {
-                for (int j = 0; j < ratings.Count; j++)
-                {
-                    if (accessories.ElementAt(i).AccessoryId == ratings.ElementAt(j).AccessoryId)
-                    {
-                        accessories.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
-                    }
-                }
-            }
+            
+            
 
             var comments = db.CommentAccessories.ToList();
 

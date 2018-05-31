@@ -19,16 +19,8 @@ namespace HLFApplication.Controllers
         {
             var multivitamins = db.Multivitamins.ToList();
             var ratings = db.RatingMultivitamins.ToList();
-            for (int i = 0; i < multivitamins.Count; i++)
-            {
-                for (int j = 0; j < ratings.Count; j++)
-                {
-                    if (multivitamins.ElementAt(i).MultivitaminId == ratings.ElementAt(j).MultivitaminId)
-                    {
-                        multivitamins.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
-                    }
-                }
-            }
+            
+            
             db.SaveChanges();
             return View(db.Multivitamins.ToList());
         }
@@ -47,16 +39,7 @@ namespace HLFApplication.Controllers
             }
             var multivitamins = db.Multivitamins.ToList();
             var ratings = db.RatingMultivitamins.ToList();
-            for (int i = 0; i < multivitamins.Count; i++)
-            {
-                for (int j = 0; j < ratings.Count; j++)
-                {
-                    if (multivitamins.ElementAt(i).MultivitaminId == ratings.ElementAt(j).MultivitaminId)
-                    {
-                        multivitamins.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
-                    }
-                }
-            }
+           
             var comments = db.CommentMultivitamins.ToList();
             db.SaveChanges();
             return View(multivitamin);
