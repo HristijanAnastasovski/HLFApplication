@@ -9,7 +9,7 @@ namespace HLFApplication.Models
     {
          
         public List<Protein> Proteins { get; set; }
-        public List<PreWorkout> PreWorkouts { get; set; }
+        
         public List<Multivitamin> Multivitamins { get; set; }
         public List<Accessory> Accessories { get; set; }
       //  public List<TrainingProgram> TrainingPrograms { get; set; }
@@ -17,7 +17,7 @@ namespace HLFApplication.Models
         public Store()
         {
             Proteins = new List<Protein>();
-            PreWorkouts = new List<PreWorkout>();
+            
             Multivitamins = new List<Multivitamin>();
             Accessories = new List<Accessory>();
            // TrainingPrograms = new List<TrainingProgram>();

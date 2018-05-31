@@ -4,54 +4,138 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfProductsInStock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageURL)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfProductsInStock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageURL)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MultivitaminId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MultivitaminId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MultivitaminId })
-        </td>
-    </tr>
+<h2 style="font:bold 20px arial,verdana; display:inline-block; ">MULTIVITAMIN</h2>
+@if (User.IsInRole("Administrator") || User.IsInRole("Editor"))
+{
+    <p style="display:inline">
+        | @Html.ActionLink("Add a new multivitamin product", "Create")
+    </p>
 }
+<img src="http://cdn.shopify.com/s/files/1/2106/4505/products/Multivitamin_Men_1024x1024.png?v=1512063683" style="width:100%; height:400px" />
 
-</table>
+
+
+@foreach (var item in Model)
+{
+    <div class="item" style="border-radius: 25px;width:31%; height:185px;display:inline-block; margin:20px;margin-left:0px;background: linear-gradient(to right, #b993d6, #8ca6db);">
+
+
+        <div class="item-info-text" style="float:left;padding:10px;font-size:large;color:whitesmoke; width:65%; height:100%">
+            <div style="display:block;">
+                Name: <a href="/Multivitamins/Details/@item.MultivitaminId" style="font-size:large;color:whitesmoke; ">@Html.DisplayFor(modelItem => item.Name)</a>
+            </div>
+            <div style="display:block;">
+                Price: $@Html.DisplayFor(modelItem => item.Price)
+            </div>
+
+
+            <div style="display:block;">
+                @{
+                    decimal average = 0;
+                    if (item.Ratings.Count == 0)
+                    {
+
+                        average = 0;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < item.Ratings.Count; i++)
+                        {
+                            average += item.Ratings.ElementAt(i);
+
+                        }
+                        average = average / (decimal)item.Ratings.Count;
+
+                    }
+                    int pom = 0;
+
+                }
+                Rating:
+                @{
+                    if (average <= 1)
+                    {
+                        pom = 1;
+                    }
+                    else if (average > 1 && average <= 2)
+                    {
+                        pom = 2;
+                    }
+                    else if (average > 2 && average <= 3)
+                    {
+                        pom = 3;
+                    }
+                    else if (average > 3 && average <= 4)
+                    {
+                        pom = 4;
+                    }
+                    else
+                    {
+                        pom = 5;
+                    }
+
+                }
+                @while (pom > 0)
+                {
+                    <img src="http://www.stickpng.com/assets/images/580b585b2edbce24c47b2913.png" style="width:10%;height:10%" />
+                    pom--;
+                }
+
+
+
+
+            </div>
+            @if (item.NumberOfProductsInStock > 0)
+            {
+                <p style="color:green">AVAILABLE</p>
+            }
+            else
+            {
+                <p style="color:red">OUT OF STOCK</p>
+            }
+            <div style="display:block">
+                @if (!User.IsInRole("Administrator") && !User.IsInRole("Editor"))
+                {
+                    <div style="float:left; ">
+                        @Html.ActionLink("Rate", "Create", "RatingMultivitamins", new { id = item.MultivitaminId}, new { @class = "btn btn-default" })&nbsp;
+                    </div>
+                    if (item.NumberOfProductsInStock > 0)
+                    {
+                        <div style="float:left; ">
+
+                            <a href="@Url.Action("BuyProduct", "Multivitamins",new { id=item.MultivitaminId})" class="btn btn-default">
+                                Buy <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/28468-200.png" style="height:20px;width:20px;" />
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div style="display:block">
+                @if (User.IsInRole("Administrator") || User.IsInRole("Editor"))
+                {
+                    <div style="float:left; ">
+                        @Html.ActionLink("Add", "AddQuantity", new { id = item.MultivitaminId}, new { @class = "btn btn-default" }) &nbsp;
+
+
+                    </div>
+                    <div style="float:left; ">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MultivitaminId}, new { @class = "btn btn-default" }) &nbsp;
+
+
+                    </div>
+                    <div style="float:left; ">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MultivitaminId}, new { @class = "btn btn-default" })
+
+                    </div>
+                }
+            </div>
+
+        </div>
+
+        <div class="item-picture" style="display:block;float:left;padding:10px;height:80%;width:30%">
+            <img src="@item.ImageURL" style="width:100px; height:100%" />
+        </div>
+
+    </div>
+
+}

@@ -192,14 +192,17 @@
     <Compile Include="Controllers\AccessoriesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BuyAccessoriesController.cs" />
+    <Compile Include="Controllers\BuyMultivitaminsController.cs" />
     <Compile Include="Controllers\BuyProteinsController.cs" />
     <Compile Include="Controllers\CommentAccessoriesController.cs" />
+    <Compile Include="Controllers\CommentMultivitaminsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MultivitaminsController.cs" />
     <Compile Include="Controllers\ProteinsController.cs" />
     <Compile Include="Controllers\RatingAccessoriesController.cs" />
+    <Compile Include="Controllers\RatingMultivitaminsController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,22 +264,28 @@
     <Compile Include="Migrations\201805301732088_AccessoriesMigration.Designer.cs">
       <DependentUpon>201805301732088_AccessoriesMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805301950285_MultivitaminMigration.cs" />
+    <Compile Include="Migrations\201805301950285_MultivitaminMigration.Designer.cs">
+      <DependentUpon>201805301950285_MultivitaminMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accessory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddQuantityToItem.cs" />
     <Compile Include="Models\AddRoleToUser.cs" />
     <Compile Include="Models\BuyAccessory.cs" />
+    <Compile Include="Models\BuyMultivitamin.cs" />
     <Compile Include="Models\BuyProtein.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentAccessory.cs" />
+    <Compile Include="Models\CommentMultivitamin.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Multivitamin.cs" />
-    <Compile Include="Models\PreWorkout.cs" />
     <Compile Include="Models\Protein.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\RatingAccessory.cs" />
+    <Compile Include="Models\RatingMultivitamin.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -391,6 +400,23 @@
     <Content Include="Views\BuyAccessories\Index.cshtml" />
     <Content Include="Views\Accessories\BuyProduct.cshtml" />
     <Content Include="Views\Accessories\AddQuantity.cshtml" />
+    <Content Include="Views\BuyMultivitamins\Create.cshtml" />
+    <Content Include="Views\BuyMultivitamins\Delete.cshtml" />
+    <Content Include="Views\BuyMultivitamins\Details.cshtml" />
+    <Content Include="Views\BuyMultivitamins\Edit.cshtml" />
+    <Content Include="Views\BuyMultivitamins\Index.cshtml" />
+    <Content Include="Views\CommentMultivitamins\Create.cshtml" />
+    <Content Include="Views\CommentMultivitamins\Delete.cshtml" />
+    <Content Include="Views\CommentMultivitamins\Details.cshtml" />
+    <Content Include="Views\CommentMultivitamins\Edit.cshtml" />
+    <Content Include="Views\CommentMultivitamins\Index.cshtml" />
+    <Content Include="Views\RatingMultivitamins\Create.cshtml" />
+    <Content Include="Views\RatingMultivitamins\Delete.cshtml" />
+    <Content Include="Views\RatingMultivitamins\Details.cshtml" />
+    <Content Include="Views\RatingMultivitamins\Edit.cshtml" />
+    <Content Include="Views\RatingMultivitamins\Index.cshtml" />
+    <Content Include="Views\Multivitamins\BuyProduct.cshtml" />
+    <Content Include="Views\Multivitamins\AddQuantity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -450,6 +476,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805301732088_AccessoriesMigration.resx">
       <DependentUpon>201805301732088_AccessoriesMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301950285_MultivitaminMigration.resx">
+      <DependentUpon>201805301950285_MultivitaminMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

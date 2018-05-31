@@ -62,7 +62,7 @@ namespace HLFApplication.Controllers
                 return RedirectToAction("Index", "Proteins");
             }
 
-            return RedirectToAction("Index", "Proteins");
+            return View(rating);
         }
 
         // GET: Ratings/Edit/5

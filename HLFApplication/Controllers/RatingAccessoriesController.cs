@@ -60,7 +60,7 @@ namespace HLFApplication.Controllers
                 return RedirectToAction("Index", "Accessories");
             }
 
-            return RedirectToAction("Index", "Accessories");
+            return View(ratingAccessory);
         }
 
         // GET: RatingAccessories/Edit/5

@@ -17,6 +17,19 @@ namespace HLFApplication.Controllers
         // GET: Multivitamins
         public ActionResult Index()
         {
+            var multivitamins = db.Multivitamins.ToList();
+            var ratings = db.RatingMultivitamins.ToList();
+            for (int i = 0; i < multivitamins.Count; i++)
+            {
+                for (int j = 0; j < ratings.Count; j++)
+                {
+                    if (multivitamins.ElementAt(i).MultivitaminId == ratings.ElementAt(j).MultivitaminId)
+                    {
+                        multivitamins.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
+                    }
+                }
+            }
+            db.SaveChanges();
             return View(db.Multivitamins.ToList());
         }
 
@@ -32,10 +45,67 @@ namespace HLFApplication.Controllers
             {
                 return HttpNotFound();
             }
+            var multivitamins = db.Multivitamins.ToList();
+            var ratings = db.RatingMultivitamins.ToList();
+            for (int i = 0; i < multivitamins.Count; i++)
+            {
+                for (int j = 0; j < ratings.Count; j++)
+                {
+                    if (multivitamins.ElementAt(i).MultivitaminId == ratings.ElementAt(j).MultivitaminId)
+                    {
+                        multivitamins.ElementAt(i).Ratings.Add(ratings.ElementAt(j).Value);
+                    }
+                }
+            }
+            var comments = db.CommentMultivitamins.ToList();
+            db.SaveChanges();
             return View(multivitamin);
         }
 
+        [Authorize(Roles = "Member")]
+        public ActionResult BuyProduct(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Multivitamin multivitamin = db.Multivitamins.Find(id);
+            if (multivitamin == null)
+            {
+                return HttpNotFound();
+            }
+            return View(multivitamin);
+        }
+        [Authorize(Roles = "Administrator,Editor")]
+        public ActionResult AddQuantity(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Multivitamin multivitamin = db.Multivitamins.Find(id);
+            if (multivitamin == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            AddQuantityToItem model = new AddQuantityToItem();
+            model.ItemId = id;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddQuantity(AddQuantityToItem model)
+        {
+            db.Multivitamins.Find(model.ItemId).NumberOfProductsInStock = db.Multivitamins.Find(model.ItemId).NumberOfProductsInStock + model.Quantity;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         // GET: Multivitamins/Create
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +129,7 @@ namespace HLFApplication.Controllers
         }
 
         // GET: Multivitamins/Edit/5
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +161,7 @@ namespace HLFApplication.Controllers
         }
 
         // GET: Multivitamins/Delete/5
+        [Authorize(Roles = "Administrator,Editor")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

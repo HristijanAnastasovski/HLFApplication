@@ -133,3 +133,4 @@ C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplicatio
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.fixNoSale.resources
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.AccessoriesMigration.resources
 C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.csprojResolveAssemblyReference.cache
+C:\Users\User\source\repos\HLFApplication\HLFApplication\obj\Debug\HLFApplication.Migrations.MultivitaminMigration.resources
